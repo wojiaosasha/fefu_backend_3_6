@@ -29,4 +29,3 @@ Route::get('/appeal', [AppealController::class, 'form'])->name('appeal.form');
 Route::post('/appeal', [AppealController::class, 'send'])->name('appeal.send');
 
 //Route::match(['get', 'post'], '/appeal', AppealController::class)->name('appeal');
-
