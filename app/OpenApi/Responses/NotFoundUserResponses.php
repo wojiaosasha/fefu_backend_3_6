@@ -1,6 +1,6 @@
 <?php
 
-namespace App\OpenApi\Responses\auth;
+namespace App\OpenApi\Responses;
 
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;

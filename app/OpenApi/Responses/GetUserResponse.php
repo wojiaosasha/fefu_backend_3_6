@@ -1,6 +1,6 @@
 <?php
 
-namespace App\OpenApi\Responses\auth;
+namespace App\OpenApi\Responses;
 
 use App\OpenApi\Schemas\NewsSchema;
 use App\OpenApi\Schemas\UserSchema;
