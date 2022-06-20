@@ -483,6 +483,23 @@
                     }
                 }
             }
+        },
+        "responses": {
+            "ErrorValidation": {
+                "description": "Validation errors",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "array",
+                            "example": {
+                                "name": [
+                                    "Something is wrong with this field!"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [

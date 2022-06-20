@@ -49,3 +49,5 @@ Route::get('/register', [AuthController::class, 'registerForm'])
 
 Route::post('/register', [AuthController::class, 'register'])
     ->name('register.post');
+
+//Route::match(['get', 'post'], '/appeal', AppealController::class)->name('appeal');
