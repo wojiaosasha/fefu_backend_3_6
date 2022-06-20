@@ -54,4 +54,5 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::prefix('/oauth')->group(function () {
     Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
     Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
-});
+
+//Route::match(['get', 'post'], '/appeal', AppealController::class)->name('appeal');
