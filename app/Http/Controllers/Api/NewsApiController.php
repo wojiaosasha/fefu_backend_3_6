@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\News;
-use App\Http\Requests\StoreNewsRequest;
-use App\Http\Requests\UpdateNewsRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\NewsResources;
+use App\Models\News;
 use App\OpenApi\Responses\ListNewsResponse;
 use App\OpenApi\Responses\NotFoundResponse;
 use App\OpenApi\Responses\ShowNewsResponse;
