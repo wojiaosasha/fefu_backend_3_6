@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\NewsApiController;
 use App\Http\Controllers\Api\PageApiController;
 use Illuminate\Http\Request;
@@ -34,3 +35,11 @@ Route::apiResource('pages', PageApiController::class)->only([
 Route::apiResource('appeals', AppealApiController::class)->only([
     'store'
 ]);
+
+Route::middleware('auth:sanctum')->get('/user', [AuthApiController::class, 'getUser']);
+
+Route::post('login', [AuthApiController::class, 'login']);
+
+Route::post('register', [AuthApiController::class, 'register']);
+
+Route::post('logout', [AuthApiController::class, 'logout']);

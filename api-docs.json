@@ -10,6 +10,34 @@
         }
     ],
     "paths": {
+        "\/api\/user": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "output user data",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
         "\/api\/news": {
             "get": {
                 "summary": "Display a listing of the resource.",
@@ -207,6 +235,108 @@
                     }
                 }
             }
+        },
+        "\/api\/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "login user",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test@test.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#\/components\/responses\/User Token"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ErrorValidation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "\/api\/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "register user",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "shrek"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test@test.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "$ref": "#\/components\/responses\/ErrorValidation"
+                    },
+                    "200": {
+                        "$ref": "#\/components\/responses\/User Token"
+                    }
+                }
+            }
+        },
+        "\/api\/logout": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "logout user",
+                "responses": {
+                    "200": {
+                        "description": "logout success"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -303,6 +433,53 @@
                     },
                     "text": {
                         "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "ErrorValidation": {
+                "description": "Validation errors",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "array",
+                            "example": {
+                                "name": [
+                                    "Something is wrong with this field!"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "User Token": {
+                "description": "User Token",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "token": "token_string"
+                            }
+                        }
                     }
                 }
             }
