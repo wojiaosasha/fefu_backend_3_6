@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @mixin \Eloquent
+ * @mixin IdeHelperNews
  */
 class News extends Model
 {

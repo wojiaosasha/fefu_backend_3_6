@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereUserId($value)
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal wherePhone($value)
+ * @mixin IdeHelperAppeal
  */
 class Appeal extends Model
 {
