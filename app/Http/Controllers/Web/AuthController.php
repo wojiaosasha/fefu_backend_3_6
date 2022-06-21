@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Requests\BaseLoginFormRequest;
 use App\Http\Requests\BaseRegisterFormRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -26,15 +27,17 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        if (Auth::attempt($data, true)) {
+        if (Auth::attempt($data, true)){
             $request->session()->regenerate();
+            $user = Auth::user();
+            $user->app_logged_in_at = Carbon::now();
+            $user->save();
             return redirect(route('profile'));
         }
 
-        return back()->with([
-            'email' => 'invalid'
+        return back()->withErrors([
+            'email' => 'Invalid credentials',
         ]);
-
     }
 
     public function logout(Request $request)
@@ -52,7 +55,15 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        $user = User::createFromRequest($data);
+        $user = User::query()
+            ->where('email', $data['email'])
+            ->first();
+
+        if ($user) {
+            $user = User::changeFromRequest($user, $data);
+        } else {
+            $user = User::createFromRequest($data);
+        }
 
         Auth::login($user);
         $request->session()->regenerate();
