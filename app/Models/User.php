@@ -25,6 +25,11 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $github_id
  * @property \Illuminate\Support\Carbon|null $github_logged_in_at
  * @property \Illuminate\Support\Carbon|null $github_registered_at
+ * @property string|null $google_id
+ * @property \Illuminate\Support\Carbon|null $google_logged_in_at
+ * @property \Illuminate\Support\Carbon|null $google_registered_at
+ * @property \Illuminate\Support\Carbon|null $app_logged_in_at
+ * @property \Illuminate\Support\Carbon|null $app_registered_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -33,29 +38,23 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAppLoggedInAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAppRegisteredAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubLoggedInAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubRegisteredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleLoggedInAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleRegisteredAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string|null $google_id
- * @property \Illuminate\Support\Carbon|null $google_logged_in_at
- * @property \Illuminate\Support\Carbon|null $google_registered_at
- * @property \Illuminate\Support\Carbon|null $app_logged_in_at
- * @property \Illuminate\Support\Carbon|null $app_registered_at
- * @method static \Illuminate\Database\Eloquent\Builder|User whereAppLoggedInAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereAppRegisteredAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleLoggedInAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleRegisteredAt($value)
- * @mixin IdeHelperUser
  */
 class User extends Authenticatable
 {

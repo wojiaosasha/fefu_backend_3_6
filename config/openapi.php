@@ -22,10 +22,25 @@ return [
             ],
 
             'tags' => [
-
                 [
-                   'name' => 'news',
-                   'description' => 'News',
+                    'name' => 'news',
+                    'description' => 'News',
+                ],
+                [
+                    'name' => 'pages',
+                    'description' => 'Pages',
+                ],
+                [
+                    'name' => 'appeals',
+                    'description' => 'Appeals',
+                ],
+                [
+                    'name' => 'auth',
+                    'description' => 'Auth',
+                ],
+                [
+                    'name' => 'categories',
+                    'description' => 'Categories',
                 ],
 
             ],

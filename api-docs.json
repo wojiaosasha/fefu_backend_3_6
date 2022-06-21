@@ -337,6 +337,72 @@
                     }
                 }
             }
+        },
+        "\/api\/catalog": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Display categories.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/Categories"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/catalog\/{catalog}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Display Categories through slug.",
+                "parameters": [
+                    {
+                        "name": "catalog",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/Categories"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -436,6 +502,23 @@
                     }
                 }
             },
+            "Categories": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "parent_id": {
+                        "type": "string"
+                    }
+                }
+            },
             "User": {
                 "type": "object",
                 "properties": {
@@ -483,29 +566,28 @@
                     }
                 }
             }
-        },
-        "responses": {
-            "ErrorValidation": {
-                "description": "Validation errors",
-                "content": {
-                    "application\/json": {
-                        "schema": {
-                            "type": "array",
-                            "example": {
-                                "name": [
-                                    "Something is wrong with this field!"
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "tags": [
         {
             "name": "news",
             "description": "News"
+        },
+        {
+            "name": "pages",
+            "description": "Pages"
+        },
+        {
+            "name": "appeals",
+            "description": "Appeals"
+        },
+        {
+            "name": "auth",
+            "description": "Auth"
+        },
+        {
+            "name": "categories",
+            "description": "Categories"
         }
     ]
 }
