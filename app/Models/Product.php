@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,8 +36,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductAttributeValue[] $sortedAttributeValues
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductAttributeValues[] $sortedAttributeValues
  * @property-read int|null $sorted_attribute_values_count
+ * @method static Builder|Product search(string $searchQuery)
  */
 class Product extends Model
 {
@@ -58,7 +60,7 @@ class Product extends Model
 
     public function getAttributeValues(): HasMany
     {
-        return $this->hasMany(ProductAttributeValue::class);
+        return $this->hasMany(ProductAttributeValues::class);
     }
 
     public function sortedAttributeValues(): HasMany
@@ -68,5 +70,10 @@ class Product extends Model
             ->join('product_attributes', 'product_attributes.id', '=', 'product_attribute_values.product_attribute_id')
             ->orderBy('product_attributes.sort_order')
             ->orderBy('product_attributes.id');
+    }
+
+    public function scopeSearch(Builder $builder, string $searchQuery): Builder
+    {
+        return $builder->where('products.name', 'ilike', "%{$searchQuery}%");
     }
 }

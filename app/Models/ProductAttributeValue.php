@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Models\ProductAttributeValue
+ * App\Models\ProductAttributeValues
  *
- * @property-read Product|null $product
- * @property-read ProductAttribute|null $productAttribute
+ * @property-read \App\Models\Product|null $product
+ * @property-read \App\Models\ProductAttribute|null $productAttribute
  * @method static \Database\Factories\ProductAttributeValueFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductAttributeValue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductAttributeValue newQuery()

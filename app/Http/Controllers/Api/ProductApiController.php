@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\ProductFilter;
+use App\Http\Requests\CatalogApiRequest;
 use App\Http\Resources\FullInfoProductResource;
 use App\Http\Resources\ShortInfoProductResource;
 use App\Models\Product;
@@ -13,7 +15,6 @@ use App\OpenApi\Responses\Catalog\Products\CategoryProductListResponse;
 use App\OpenApi\Responses\Catalog\Products\ShowProductResponse;
 use App\OpenApi\Responses\NotFoundResponse;
 use Exception;
-use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
@@ -23,7 +24,6 @@ class ProductApiController extends Controller
     /**
      * Display product by slug.
      *
-     * @param Request $request
      * @return Responsable
      */
     #[OpenApi\Operation(tags: ['products'])]
@@ -33,6 +33,7 @@ class ProductApiController extends Controller
     public function show(Request $request)
     {
         $productSlug = $request['product_slug'];
+
 
         $product = Product::query()
             ->with('productCategory','sortedAttributeValues.productAttribute')
@@ -57,10 +58,11 @@ class ProductApiController extends Controller
     #[OpenApi\Parameters(factory: CategoryNameParameters::class)]
     #[OpenApi\Response(factory: CategoryProductListResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
-    public function index(Request $request)
+    public function index(CatalogApiRequest $request)
     {
-        $categorySlug = $request['category_slug'];
+        $requestData = $request->validated();
 
+        $categorySlug = $requestData['category_slug'] ?? null;
         $query = ProductCategory::query()->with('children', 'products');
 
         if ($categorySlug === null) {
@@ -72,15 +74,29 @@ class ProductApiController extends Controller
         $categories = $query->get();
 
         try {
-            $products = ProductCategory::getTreeProductBuilder($categories)
-                ->orderBy('id')
-                ->paginate();
+            $productQuery = ProductCategory::getTreeProductBuilder($categories);
         } catch (Exception $exception) {
             abort(422, $exception->getMessage());
         }
 
+
+        $searchQuery = $requestData['search_query'] ?? null;
+        if ($searchQuery !== null ){
+            $productQuery->search($searchQuery);
+        }
+
+        ProductFilter::apply($productQuery, $requestData['filters'] ?? []);
+
+        $sortMode = $requestData['sort_mode'] ?? null;
+        if ($sortMode == 'price_asc' ){
+            $productQuery->orderBy('price');
+        } else if ($sortMode == 'price_desc'){
+            $productQuery->orderBy('price', 'desc');
+        }
+
+
         return ShortInfoProductResource::collection(
-            $products
+            $productQuery->orderBy('products.id')->paginate(10),
         );
 
     }
