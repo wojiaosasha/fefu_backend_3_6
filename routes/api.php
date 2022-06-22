@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\CategoriesApiController;
 use App\Http\Controllers\Api\NewsApiController;
 use App\Http\Controllers\Api\PageApiController;
 use Illuminate\Http\Request;
@@ -43,3 +44,8 @@ Route::post('login', [AuthApiController::class, 'login']);
 Route::post('register', [AuthApiController::class, 'register']);
 
 Route::post('logout', [AuthApiController::class, 'logout']);
+
+Route::apiResource('catalog', CategoriesApiController::class)->only([
+    'index',
+    'show',
+]);

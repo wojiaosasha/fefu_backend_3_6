@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $message
  * @property int|null $user_id
  * @property-read \App\Models\User|null $user
- * @method static \Database\Factories\AppealFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal query()
@@ -27,12 +26,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Appeal wherePhome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Appeal wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Appeal whereUserId($value)
  * @mixin \Eloquent
- * @method static \Illuminate\Database\Eloquent\Builder|Appeal wherePhone($value)
- * @mixin IdeHelperAppeal
  */
 class Appeal extends Model
 {
