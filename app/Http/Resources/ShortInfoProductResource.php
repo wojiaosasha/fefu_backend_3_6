@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Models\News;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * @mixin Categories
- */
-class CategoriesResources extends JsonResource
+class ShortInfoProductResource extends JsonResource
 {
 
     /**
@@ -22,7 +19,7 @@ class CategoriesResources extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'parent_id' => $this->parent_id,
+            'price' => $this->price,
         ];
     }
 }
