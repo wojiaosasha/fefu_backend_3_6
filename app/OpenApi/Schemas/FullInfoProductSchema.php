@@ -14,7 +14,7 @@ use Vyuldashev\LaravelOpenApi\Factories\SchemaFactory;
 class FullInfoProductSchema extends SchemaFactory implements Reusable
 {
     /**
-     * @return AllOf|OneOf|AnyOf|Not|Schema
+     * @return SchemaContract
      */
     public function build(): SchemaContract
     {

@@ -10,6 +10,8 @@ use App\OpenApi\Parameters\AppealsParameters;
 use App\OpenApi\Responses\FailedValidationResponse;
 use App\OpenApi\Responses\SuccessValidationResponse;
 use App\Sanitizers\PhoneSanitizer;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Http\JsonResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]
@@ -17,9 +19,8 @@ class AppealApiController extends Controller
 {
     /**
      * Sending appeals to the db.
-     * @param AppealApiRequest
+     * @param AppealApiRequest $request
      * @return JsonResponse
-     * @return Responsable
      */
     #[OpenApi\Operation(tags: ['appeals'], method: 'POST')]
     #[OpenApi\Parameters(factory: AppealsParameters::class)]

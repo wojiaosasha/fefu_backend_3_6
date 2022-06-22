@@ -23,6 +23,7 @@ class ProductApiController extends Controller
     /**
      * Display product by slug.
      *
+     * @param Request $request
      * @return Responsable
      */
     #[OpenApi\Operation(tags: ['products'])]

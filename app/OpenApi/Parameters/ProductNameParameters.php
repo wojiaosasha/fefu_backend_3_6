@@ -16,7 +16,7 @@ class ProductNameParameters extends ParametersFactory
         return [
             Parameter::query()
                 ->name('product_slug')
-                ->required(false)
+                ->required(true)
                 ->schema(Schema::string()),
         ];
     }

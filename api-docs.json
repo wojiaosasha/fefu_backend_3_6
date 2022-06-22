@@ -38,204 +38,6 @@
                 }
             }
         },
-        "\/api\/news": {
-            "get": {
-                "summary": "Display a listing of the resource.",
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#\/components\/schemas\/News"
-                                            }
-                                        },
-                                        "links": {
-                                            "$ref": "#\/components\/schemas\/PaginatorLinks"
-                                        },
-                                        "meta": {
-                                            "$ref": "#\/components\/schemas\/PaginatorMeta"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "\/api\/news\/{news}": {
-            "get": {
-                "summary": "Display the specified resource.",
-                "parameters": [
-                    {
-                        "name": "news",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "": {
-                                            "$ref": "#\/components\/schemas\/News"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            }
-        },
-        "\/api\/pages": {
-            "get": {
-                "tags": [
-                    "pages"
-                ],
-                "summary": "Display a listing of the resource.",
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#\/components\/schemas\/Page"
-                                            }
-                                        },
-                                        "links": {
-                                            "$ref": "#\/components\/schemas\/PaginatorLinks"
-                                        },
-                                        "meta": {
-                                            "$ref": "#\/components\/schemas\/PaginatorMeta"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "\/api\/pages\/{page}": {
-            "get": {
-                "tags": [
-                    "pages"
-                ],
-                "summary": "Display the specified resource.",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#\/components\/schemas\/Page"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            }
-        },
-        "\/api\/appeals": {
-            "post": {
-                "tags": [
-                    "appeals"
-                ],
-                "summary": "Sending appeals to the db.",
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Name",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "maxLength": 100
-                        },
-                        "example": "User"
-                    },
-                    {
-                        "name": "phone",
-                        "in": "query",
-                        "description": "Phone",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "88005553535"
-                    },
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "description": "Email",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "User@gmail.com"
-                    },
-                    {
-                        "name": "message",
-                        "in": "query",
-                        "description": "Message",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "maxLength": 1000
-                        },
-                        "example": "Message"
-                    }
-                ],
-                "responses": {
-                    "422": {
-                        "$ref": "#\/components\/responses\/ErrorValidation"
-                    },
-                    "200": {
-                        "description": "Successful response"
-                    }
-                }
-            }
-        },
         "\/api\/login": {
             "post": {
                 "tags": [
@@ -338,7 +140,211 @@
                 }
             }
         },
-        "\/api\/catalog": {
+        "\/api\/appeals": {
+            "post": {
+                "tags": [
+                    "appeals"
+                ],
+                "summary": "Sending appeals to the db.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 100
+                        },
+                        "example": "User"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Phone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "88005553535"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "User@gmail.com"
+                    },
+                    {
+                        "name": "message",
+                        "in": "query",
+                        "description": "Message",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 1000
+                        },
+                        "example": "Message"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "$ref": "#\/components\/responses\/ErrorValidation"
+                    },
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "\/api\/news": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Display a listing of the resource.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/News"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#\/components\/schemas\/PoginatorLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#\/components\/schemas\/PoginatorMeta"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/news\/{news}": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Display the specified resource.",
+                "parameters": [
+                    {
+                        "name": "news",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/News"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "\/api\/pages": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Display a listing of the resource.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/Page"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#\/components\/schemas\/PoginatorLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#\/components\/schemas\/PoginatorMeta"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/pages\/{page}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Display the specified resource.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/Page"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "\/api\/categories": {
             "get": {
                 "tags": [
                     "categories"
@@ -366,7 +372,7 @@
                 }
             }
         },
-        "\/api\/catalog\/{catalog}": {
+        "\/api\/categories\/{category}": {
             "get": {
                 "tags": [
                     "categories"
@@ -374,7 +380,7 @@
                 "summary": "Display Categories through slug.",
                 "parameters": [
                     {
-                        "name": "catalog",
+                        "name": "category",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -403,11 +409,198 @@
                     }
                 }
             }
+        },
+        "\/api\/catalog\/product\/list": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Display all products category.",
+                "parameters": [
+                    {
+                        "name": "category_slug",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/ShortInfoProduct"
+                                            }
+                                        },
+                                        "links": {
+                                            "$ref": "#\/components\/schemas\/PoginatorLinks"
+                                        },
+                                        "meta": {
+                                            "$ref": "#\/components\/schemas\/PoginatorMeta"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "\/api\/catalog\/product\/details": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Display product by slug.",
+                "parameters": [
+                    {
+                        "name": "product_slug",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/FullInfoProduct"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
-            "PaginatorMeta": {
+            "Categories": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "parent_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FullInfoProduct": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "$ref": "#\/components\/schemas\/Categories"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "News": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "published_at": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                }
+            },
+            "Page": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PoginatorLinks": {
+                "type": "object",
+                "properties": {
+                    "first": {
+                        "type": "string"
+                    },
+                    "last": {
+                        "type": "string"
+                    },
+                    "prev": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "next": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "PoginatorMeta": {
                 "type": "object",
                 "properties": {
                     "current_page": {
@@ -444,65 +637,14 @@
                                     "type": "string"
                                 },
                                 "active": {
-                                    "type": "boolean"
+                                    "type": "string"
                                 }
                             }
                         }
                     }
                 }
             },
-            "News": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "slug": {
-                        "type": "string"
-                    },
-                    "text": {
-                        "type": "string"
-                    },
-                    "published_at": {
-                        "format": "date-time",
-                        "type": "string"
-                    }
-                }
-            },
-            "PaginatorLinks": {
-                "type": "object",
-                "properties": {
-                    "first": {
-                        "type": "string"
-                    },
-                    "last": {
-                        "type": "string"
-                    },
-                    "prev": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "next": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                }
-            },
-            "Page": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "slug": {
-                        "type": "string"
-                    },
-                    "text": {
-                        "type": "string"
-                    }
-                }
-            },
-            "Categories": {
+            "ShortInfoProduct": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -514,7 +656,7 @@
                     "slug": {
                         "type": "string"
                     },
-                    "parent_id": {
+                    "price": {
                         "type": "string"
                     }
                 }
@@ -538,6 +680,19 @@
             }
         },
         "responses": {
+            "User Token": {
+                "description": "User Token",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "token": "token_string"
+                            }
+                        }
+                    }
+                }
+            },
             "ErrorValidation": {
                 "description": "Validation errors",
                 "content": {
@@ -548,19 +703,6 @@
                                 "name": [
                                     "Something is wrong with this field!"
                                 ]
-                            }
-                        }
-                    }
-                }
-            },
-            "User Token": {
-                "description": "User Token",
-                "content": {
-                    "application\/json": {
-                        "schema": {
-                            "type": "object",
-                            "example": {
-                                "token": "token_string"
                             }
                         }
                     }
@@ -588,6 +730,10 @@
         {
             "name": "categories",
             "description": "Categories"
+        },
+        {
+            "name": "products",
+            "description": "Products"
         }
     ]
 }

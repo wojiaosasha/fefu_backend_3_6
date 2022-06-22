@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <body>
 Catalog
 @include('catalog.category_list', ['categories', $categories])
