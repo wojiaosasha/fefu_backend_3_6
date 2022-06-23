@@ -581,7 +581,7 @@
                     }
                 }
             },
-            "PoginatorLinks": {
+            "PaginatorLinks": {
                 "type": "object",
                 "properties": {
                     "first": {
@@ -600,7 +600,7 @@
                     }
                 }
             },
-            "PoginatorMeta": {
+            "PaginatorMeta": {
                 "type": "object",
                 "properties": {
                     "current_page": {
