@@ -15,6 +15,7 @@ use App\OpenApi\Responses\Catalog\Products\CategoryProductListResponse;
 use App\OpenApi\Responses\Catalog\Products\ShowProductResponse;
 use App\OpenApi\Responses\NotFoundResponse;
 use Exception;
+
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
@@ -25,8 +26,6 @@ class ProductApiController extends Controller
     /**
      * Display product by slug.
      *
-
-     * @param Request $request
      * @return Responsable
      */
     #[OpenApi\Operation(tags: ['products'])]
@@ -36,6 +35,7 @@ class ProductApiController extends Controller
     public function show(Request $request)
     {
         $productSlug = $request['product_slug'];
+
 
         $product = Product::query()
             ->with('productCategory','sortedAttributeValues.productAttribute')

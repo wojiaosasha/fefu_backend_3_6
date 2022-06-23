@@ -12,7 +12,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Models\Product;
 use App\Models\ProductAttribute;
-use Exception;
 
 class CategoriesController extends Controller
 {
