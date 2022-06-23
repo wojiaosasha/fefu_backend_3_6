@@ -10,6 +10,8 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use App\Models\Product;
+use App\Models\ProductAttribute;
 
 class CategoriesController extends Controller
 {
@@ -34,6 +36,7 @@ class CategoriesController extends Controller
 
         try {
             $productQuery = ProductCategory::getTreeProductBuilder($categories);
+
         } catch (Exception $exception) {
             abort(422, $exception->getMessage());
         }

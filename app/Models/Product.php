@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductAttributeValues[] $sortedAttributeValues
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductAttributeValue[] $sortedAttributeValues
  * @property-read int|null $sorted_attribute_values_count
  * @method static Builder|Product search(string $searchQuery)
  */
@@ -60,7 +60,7 @@ class Product extends Model
 
     public function getAttributeValues(): HasMany
     {
-        return $this->hasMany(ProductAttributeValues::class);
+        return $this->hasMany(ProductAttributeValue::class);
     }
 
     public function sortedAttributeValues(): HasMany
