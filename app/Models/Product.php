@@ -61,6 +61,7 @@ class Product extends Model
     public function getAttributeValues(): HasMany
     {
         return $this->hasMany(ProductAttributeValues::class);
+
     }
 
     public function sortedAttributeValues(): HasMany
@@ -76,4 +77,5 @@ class Product extends Model
     {
         return $builder->where('products.name', 'ilike', "%{$searchQuery}%");
     }
+
 }

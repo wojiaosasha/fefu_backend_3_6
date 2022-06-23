@@ -15,6 +15,7 @@ use App\OpenApi\Responses\Catalog\Products\CategoryProductListResponse;
 use App\OpenApi\Responses\Catalog\Products\ShowProductResponse;
 use App\OpenApi\Responses\NotFoundResponse;
 use Exception;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
@@ -24,6 +25,8 @@ class ProductApiController extends Controller
     /**
      * Display product by slug.
      *
+
+     * @param Request $request
      * @return Responsable
      */
     #[OpenApi\Operation(tags: ['products'])]
@@ -33,7 +36,6 @@ class ProductApiController extends Controller
     public function show(Request $request)
     {
         $productSlug = $request['product_slug'];
-
 
         $product = Product::query()
             ->with('productCategory','sortedAttributeValues.productAttribute')
@@ -58,11 +60,13 @@ class ProductApiController extends Controller
     #[OpenApi\Parameters(factory: CategoryNameParameters::class)]
     #[OpenApi\Response(factory: CategoryProductListResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
+
     public function index(CatalogApiRequest $request)
     {
         $requestData = $request->validated();
 
         $categorySlug = $requestData['category_slug'] ?? null;
+
         $query = ProductCategory::query()->with('children', 'products');
 
         if ($categorySlug === null) {
@@ -74,11 +78,12 @@ class ProductApiController extends Controller
         $categories = $query->get();
 
         try {
+
             $productQuery = ProductCategory::getTreeProductBuilder($categories);
+
         } catch (Exception $exception) {
             abort(422, $exception->getMessage());
         }
-
 
         $searchQuery = $requestData['search_query'] ?? null;
         if ($searchQuery !== null ){
@@ -97,6 +102,7 @@ class ProductApiController extends Controller
 
         return ShortInfoProductResource::collection(
             $productQuery->orderBy('products.id')->paginate(10),
+
         );
 
     }
