@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Responsable;
 use App\Http\Resources\PagesResource;
 use App\Models\Page;
 use App\OpenApi\Responses\ListPagesResponse;
 use App\OpenApi\Responses\NotFoundResponse;
 use App\OpenApi\Responses\ShowPagesResponse;
+use Illuminate\Contracts\Support\Responsable;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoriesResources;
+use App\Http\Resources\CategoriesResource;
 use App\Models\ProductCategory;
 use App\OpenApi\Responses\AllCategoriesResponse;
 use App\OpenApi\Responses\ShowCategoriesResponse;
@@ -19,11 +19,11 @@ class CategoriesApiController extends Controller
      *
      * @return Responsable
      */
-    #[OpenApi\Operation(tags: ['categories'])]
+    #[OpenApi\Operation(tags: ['catalog'],  method: 'GET')]
     #[OpenApi\Response(factory: AllCategoriesResponse::class, statusCode: 200)]
     public function index( )
     {
-        return CategoriesResources::collection(
+        return CategoriesResource::collection(
             ProductCategory::all()
         );
     }
@@ -35,12 +35,12 @@ class CategoriesApiController extends Controller
      * @param string $slug
      * @return Responsable
      */
-    #[OpenApi\Operation(tags: ['categories'])]
+    #[OpenApi\Operation(tags: ['catalog'],  method: 'GET')]
     #[OpenApi\Response(factory: ShowCategoriesResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
     public function show(string $slug)
     {
-        return new CategoriesResources(
+        return new CategoriesResource(
             ProductCategory::query()->where('slug', $slug)->firstOrFail()
         );
     }
