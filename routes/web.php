@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\NewsWebController;
 use App\Http\Controllers\Web\OAuthController;
 use App\Http\Controllers\Web\PageWebController;
@@ -63,3 +64,5 @@ Route::get('/catalog/{slug?}', [CategoriesController::class, 'index'])
 
 Route::get('/catalog/product/{slug}', [ProductController::class, 'index'])
     ->name('product');
+
+Route::get('/cart', CartController::class)->middleware('auth.optional');
